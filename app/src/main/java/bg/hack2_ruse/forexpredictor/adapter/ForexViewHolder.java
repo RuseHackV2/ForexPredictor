@@ -7,10 +7,7 @@ import android.widget.TextView;
 
 import bg.hack2_ruse.forexpredictor.R;
 
-/**
- * Created by Petq on 7.11.2015 г..
- */
-
+//recyclercityadapter
 public class ForexViewHolder extends RecyclerView.ViewHolder {
 
 
@@ -27,4 +24,6 @@ public ForexViewHolder(View itemView) {
     this.price = (TextView) itemView.findViewById(R.id.price);
     this.date = (TextView) itemView.findViewById(R.id.date);
 }
+
+
 }

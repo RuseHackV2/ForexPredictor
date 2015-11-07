@@ -1,10 +1,14 @@
 package bg.hack2_ruse.forexpredictor.adapter;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import bg.hack2_ruse.forexpredictor.adapter.ForexViewHolder;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -13,36 +17,47 @@ import bg.hack2_ruse.forexpredictor.R;
 import bg.hack2_ruse.forexpredictor.model.Quotes;
 
 
-public class InstrumentAdapter extends RecyclerView.Adapter<RecyclerForexAdapter.ForexViewHolder>{
+public class InstrumentAdapter extends ArrayAdapter<Quotes>{
 
-    private ArrayList<Quotes> quotesArrayList;
+    private  Context context;
+    private ArrayList<Quotes> quotes;
     private Typeface typeface;
-    @Override
-    public RecyclerForexAdapter.ForexViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+    public InstrumentAdapter(Context context, ArrayList<Quotes> quotesArrayList) {
+        super(context, R.layout.main_element_layout);
+        this.context = context;
+        quotes = quotesArrayList;
+        typeface = Typeface.createFromAsset(context.getAssets(), "fonts/QuicksandRegular.otf");
     }
 
     @Override
-    public void onBindViewHolder(RecyclerForexAdapter.ForexViewHolder holder, int position) {
+    public View getView(int position, View convertView, ViewGroup parent) {
 
-    }
+        ForexViewHolder holder;
 
-    @Override
-    public int getItemCount() {
-        return 0;
-    }
-    public class CityViewHolder extends RecyclerView.ViewHolder {
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.main_element_layout, null, true);
+            holder = new ForexViewHolder(convertView);
 
-        public ImageView imageView;
-        public TextView textView;
+            holder.instrument = (TextView) convertView.findViewById(R.id.instrument);
+            holder.instrument.setTypeface(typeface);
+            holder.imageView=(ImageView) convertView.findViewById(R.id.main_imageview);
 
-        public CityViewHolder(View itemView) {
-            super(itemView);
+            holder.price = (TextView) convertView.findViewById(R.id.price);
+            holder.price.setTypeface(typeface);
+            holder.date=(TextView)convertView.findViewById(R.id.date);
+            holder.date.setTypeface(typeface);
 
-            this.imageView = (ImageView) itemView.findViewById(R.id.main_imageview);
-            this.textView = (TextView) itemView.findViewById(R.id.instrument);
-
-
+            convertView.setTag(holder);
+        } else {
+            holder = (ForexViewHolder) convertView.getTag();
         }
+
+        Quotes quote = quotes.get(position);
+        holder.instrument.setText(quote.getInstrument());
+        holder.imageView.setImageDrawable(quote.getMain_imageview());
+        holder.price.setText(quote.getPrice());
+        holder.date.setText(quote.getDate());
+
+        return convertView;
     }
 }

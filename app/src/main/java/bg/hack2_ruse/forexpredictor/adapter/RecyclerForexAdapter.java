@@ -42,6 +42,8 @@ public class RecyclerForexAdapter extends RecyclerView.Adapter<RecyclerView.View
         Quotes quotes = quotesArrayList.get(position);
         view.instrument.setText(quotes.getInstrument());
         view.imageView.setImageDrawable(quotes.getMain_imageview());
+        view.price.setText(quotes.getPrice());
+        view.date.setText(quotes.getDate());
     }
 
 
