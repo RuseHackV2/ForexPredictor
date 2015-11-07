@@ -2,4 +2,9 @@
     <string name="app_name">ForexPredictor</string>
     <string name="action_settings">Settings</string>
     <string name="instrumentLabel">Instrument</string>
+    <string name="InternetError">There is no active interner connection for the application !!!</string>
+
+    <string-array name="instruments">
+    </string-array>
+
 </resources>

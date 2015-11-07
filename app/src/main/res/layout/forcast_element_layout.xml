@@ -6,15 +6,16 @@
     android:weightSum="2">
 
     <ImageView
-        android:layout_width="5dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:src="@drawable/ic_launcher"
         android:scaleType="fitXY"/>
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
+        android:textSize="30dp"
         android:text="Date" />
 </LinearLayout>
