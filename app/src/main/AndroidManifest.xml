@@ -17,7 +17,7 @@
         >
 
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.ForexActivityJSON"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>

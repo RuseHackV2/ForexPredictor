@@ -24,6 +24,7 @@ public class InstrumentAdapter extends ArrayAdapter<Instrument> {
     private  Context context;
     private List<Instrument> quotes;
     private Typeface typeface;
+
     public InstrumentAdapter(Context context, List<Instrument> quotesArrayList) {
         super(context, R.layout.main_element_layout);
         this.context = context;
@@ -64,5 +65,9 @@ public class InstrumentAdapter extends ArrayAdapter<Instrument> {
         return convertView;
     }
 
+    @Override
+    public int getCount() {
+        return quotes.size();
+    }
 
 }

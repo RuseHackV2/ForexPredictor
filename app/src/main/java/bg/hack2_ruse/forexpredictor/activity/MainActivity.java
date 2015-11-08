@@ -20,6 +20,7 @@ import bg.hack2_ruse.forexpredictor.models.Constants;
 import bg.hack2_ruse.forexpredictor.models.Tools;
 import bg.hack2_ruse.forexpredictor.services.AsyncResponse;
 import bg.hack2_ruse.forexpredictor.services.InstrumentServiceTask;
+import bg.hack2_ruse.forexpredictor.services.ToolServiceTask;
 
 public class MainActivity extends AppCompatActivity implements AsyncResponse{
 
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
         List<Tools> tools =  util.getInstruments(context);
         if (tools.size() == 0){
             String requestURL = Constants.API + Constants.INSTRUMENTS_REQUEST;
-            task = new InstrumentServiceTask(context);
+            task = new InstrumentServiceTask(context, this);
             task.execute(requestURL);
 
         }else {
@@ -91,8 +92,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
     }
 
     public void feedAdapters(List<Tools> tools){
-
-
-
+        ToolServiceTask task = new ToolServiceTask(getApplicationContext(),mainLayout,tools);
+        task.execute();
     }
 }

@@ -31,16 +31,18 @@ public class InstrumentServiceTask extends AsyncTask<String, Void, List<Tools>> 
     private OkHttpClient client;
     private Context context;
     private PropertyUtul util;
+    private AsyncResponse responce;
 
-   public InstrumentServiceTask(Context context){
+   public InstrumentServiceTask(Context context, AsyncResponse responce){
        client = new OkHttpClient();
        util = new PropertyUtul();
        this.context = context;
+       this.responce = responce;
    }
 
     @Override
     protected void onPostExecute(List<Tools> result) {
-
+    responce.processFinish(result);
     }
 
     protected List<Tools> doInBackground(String... url) {
