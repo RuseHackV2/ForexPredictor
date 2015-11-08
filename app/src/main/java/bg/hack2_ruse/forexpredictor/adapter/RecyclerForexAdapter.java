@@ -30,7 +30,7 @@ public class RecyclerForexAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(mContext).inflate(R.layout.main_element_layout, null, false);
+        View itemView = LayoutInflater.from(mContext).inflate(R.layout.forcast_layout, null, false);
         return new ForexViewHolder(itemView);
 
     }
