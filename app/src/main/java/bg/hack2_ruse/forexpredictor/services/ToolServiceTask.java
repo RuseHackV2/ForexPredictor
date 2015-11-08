@@ -26,7 +26,7 @@ import bg.hack2_ruse.forexpredictor.models.Tools;
 public class ToolServiceTask extends AsyncTask<Void, Void , Void> {
 
     private OkHttpClient client;
-    private  PropertyUtul util;
+    private PropertyUtul util;
     private Context context;
     private Gson gson;
     private List<Instrument> instruments;
@@ -51,8 +51,6 @@ public class ToolServiceTask extends AsyncTask<Void, Void , Void> {
            }
         return null;
     }
-
-
 
 
     private String run(String url) throws IOException {
