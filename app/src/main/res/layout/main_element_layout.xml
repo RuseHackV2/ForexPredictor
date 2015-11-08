@@ -2,32 +2,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" android:id="@+id/toolElement">
+    android:layout_height="match_parent" android:id="@+id/toolElement"
+    android:background="#ffffff"
+    android:padding = "5dp"
+    android:weightSum="11">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:text="@string/instrumentLabel"
-        android:id="@+id/instrumentName"/>
+        android:id="@+id/instrumentName"
+        android:textSize = "@dimen/text_size_small"
+        android:layout_weight="3"/>
 
     <ImageView
         android:id="@+id/main_imageview"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
         android:src="@drawable/ic_launcher"
+        android:layout_weight="2"
         />
 
     <TextView
         android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:text="$"
-        android:textSize="16sp"
-        android:width="16dp"/>
+        android:textSize="@dimen/text_size_small"
+        android:width="16dp"
+        android:gravity="top"
+        android:layout_weight="2"
+        />
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:id="@+id/date"
-        android:layout_height="wrap_content"
-        android:text="Date" />
+        android:layout_height="match_parent"
+        android:text="Date"
+        android:textSize="@dimen/text_size_small"
+        android:layout_weight="4"/>
+
 </LinearLayout>

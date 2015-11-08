@@ -1,12 +1,15 @@
 package bg.hack2_ruse.forexpredictor.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -17,6 +20,8 @@ import bg.hack2_ruse.forexpredictor.R;
 import bg.hack2_ruse.forexpredictor.adapter.InstrumentAdapter;
 import bg.hack2_ruse.forexpredictor.data.PropertyUtul;
 import bg.hack2_ruse.forexpredictor.models.Constants;
+import bg.hack2_ruse.forexpredictor.models.Instrument;
+import bg.hack2_ruse.forexpredictor.models.InstrumentHolder;
 import bg.hack2_ruse.forexpredictor.models.Tools;
 import bg.hack2_ruse.forexpredictor.services.AsyncResponse;
 import bg.hack2_ruse.forexpredictor.services.InstrumentServiceTask;
@@ -54,6 +59,16 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
     //    }else {
     //        feedAdapters(tools);
     //    }
+
+        mainLayout.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this, ForexActivityJSON.class);
+                intent.putExtra("instument", position);
+                startActivity(intent);
+            }
+        });
+
         super.onResume();
     }
 
@@ -92,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
     }
 
     public void feedAdapters(List<Tools> tools){
-        ToolServiceTask task = new ToolServiceTask(getApplicationContext(),mainLayout,tools);
+        ToolServiceTask task = new ToolServiceTask(this,getApplicationContext(),mainLayout,tools);
         task.execute();
     }
 }

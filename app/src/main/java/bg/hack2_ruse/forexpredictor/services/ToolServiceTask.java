@@ -1,5 +1,6 @@
 package bg.hack2_ruse.forexpredictor.services;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -14,10 +15,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bg.hack2_ruse.forexpredictor.activity.MainActivity;
 import bg.hack2_ruse.forexpredictor.adapter.InstrumentAdapter;
 import bg.hack2_ruse.forexpredictor.models.Instrument;
 import bg.hack2_ruse.forexpredictor.data.PropertyUtul;
 import bg.hack2_ruse.forexpredictor.models.Constants;
+import bg.hack2_ruse.forexpredictor.models.InstrumentHolder;
 import bg.hack2_ruse.forexpredictor.models.Tools;
 
 /**
@@ -33,8 +36,9 @@ public class ToolServiceTask extends AsyncTask<Void, Void , Void> {
     private ListView view;
     private List<Tools> list;
 
+    private ProgressDialog dialog;
 
-    public ToolServiceTask(Context context, ListView view, List<Tools> list){
+    public ToolServiceTask(Context activityContext,Context context, ListView view, List<Tools> list){
         client = new OkHttpClient();
         util = new PropertyUtul();
         gson = new Gson();
@@ -42,13 +46,21 @@ public class ToolServiceTask extends AsyncTask<Void, Void , Void> {
         this.context = context;
         this.view = view;
         this.list= list;
+        dialog = new ProgressDialog(activityContext);
+
     }
+
 
     @Override
     protected Void doInBackground(Void... params) {
-           for(Tools tools: list){
-               getData(tools);
-           }
+          // for(Tools tools: list){
+         //      getData(tools);
+         //  }
+        for(int i = 0; i < 10 ; i++)
+        {
+            Tools tools = list.get(i);
+            getData(tools);
+        }
        // getData(list.get(0));
         return null;
     }
@@ -79,10 +91,26 @@ public class ToolServiceTask extends AsyncTask<Void, Void , Void> {
 
 
     @Override
+    protected void onPreExecute() {
+        dialog.setMessage("Loading");
+        dialog.show();
+
+        super.onPreExecute();
+
+    }
+
+    @Override
     protected void onPostExecute(Void aVoid) {
         InstrumentAdapter adapter = new InstrumentAdapter(context, instruments);
+        InstrumentHolder holder = InstrumentHolder.getInstance();
+        holder.setInstruments(instruments);
         view.setAdapter(adapter);
         view.invalidate();
+
+        if(dialog.isShowing())
+        {
+            dialog.dismiss();
+        }
         super.onPostExecute(aVoid);
     }
 

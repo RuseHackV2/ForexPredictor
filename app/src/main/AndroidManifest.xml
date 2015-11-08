@@ -27,7 +27,9 @@
             </intent-filter>
 
         </activity>
+        <activity android:name=".activity.ForexActivityJSON">
 
+        </activity>
     </application>
 
 </manifest>

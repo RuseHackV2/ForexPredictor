@@ -43,7 +43,12 @@ public class Instrument {
         return candles.get(candles.size()-1).getCloseBid();
     }
 
-    public String getDate() {
-       return candles.get(candles.size()-1).getTime();
+    public String getDate()
+    {
+        String date = candles.get(candles.size()-1).getTime();
+
+       return date.substring(0,10);}
+
+    public Instrument() {
     }
 }
