@@ -43,7 +43,7 @@ public class Instrument {
         return candles.get(candles.size()-1).getCloseBid();
     }
 
-    public Date getDate() {
+    public String getDate() {
        return candles.get(candles.size()-1).getTime();
     }
 }

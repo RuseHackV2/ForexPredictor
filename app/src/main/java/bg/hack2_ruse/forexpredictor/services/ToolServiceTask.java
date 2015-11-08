@@ -49,6 +49,7 @@ public class ToolServiceTask extends AsyncTask<Void, Void , Void> {
            for(Tools tools: list){
                getData(tools);
            }
+       // getData(list.get(0));
         return null;
     }
 
@@ -65,7 +66,7 @@ public class ToolServiceTask extends AsyncTask<Void, Void , Void> {
     }
 
     private void getData(Tools tools) {
-        String url = Constants.API+ "candles?instrument=" +tools.getInstrument()+"?candleFormat=bidask";
+        String url = Constants.API+ "candles?instrument=" +tools.getInstrument()+"&candleFormat=bidask";
         Log.i("Instrument",tools.getInstrument());
         try {
             String text = run(url);

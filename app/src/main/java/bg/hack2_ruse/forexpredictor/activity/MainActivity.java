@@ -45,15 +45,15 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
     protected void onResume() {
         PropertyUtul util = new PropertyUtul();
         Context context = getApplicationContext();
-        List<Tools> tools =  util.getInstruments(context);
-        if (tools.size() == 0){
+     //   List<Tools> tools =  util.getInstruments(context);
+     //   if (tools.size() == 0){
             String requestURL = Constants.API + Constants.INSTRUMENTS_REQUEST;
             task = new InstrumentServiceTask(context, this);
             task.execute(requestURL);
 
-        }else {
-            feedAdapters(tools);
-        }
+    //    }else {
+    //        feedAdapters(tools);
+    //    }
         super.onResume();
     }
 

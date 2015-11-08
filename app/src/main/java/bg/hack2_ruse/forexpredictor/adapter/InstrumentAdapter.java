@@ -41,7 +41,7 @@ public class InstrumentAdapter extends ArrayAdapter<Instrument> {
             convertView = LayoutInflater.from(context).inflate(R.layout.main_element_layout, null, true);
             holder = new ForexViewholder(convertView);
 
-            holder.instrument = (TextView) convertView.findViewById(R.id.instrument);
+            holder.instrument = (TextView) convertView.findViewById(R.id.instrumentName);
          //   holder.instrument.setTypeface(typeface);
             holder.imageView=(ImageView) convertView.findViewById(R.id.main_imageview);
 

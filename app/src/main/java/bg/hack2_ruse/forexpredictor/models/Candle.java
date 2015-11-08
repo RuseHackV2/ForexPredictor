@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class Candle {
 
-    private Date time;
+    private String time;
     private double openBid;
     private double openAsk;
     private double highBid;
@@ -19,11 +19,11 @@ public class Candle {
     private double volume;
     private boolean complete;
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
