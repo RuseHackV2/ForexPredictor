@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import bg.hack2_ruse.forexpredictor.R;
 import bg.hack2_ruse.forexpredictor.adapter.InstrumentAdapter;
 import bg.hack2_ruse.forexpredictor.data.PropertyUtul;
 import bg.hack2_ruse.forexpredictor.models.Constants;
+import bg.hack2_ruse.forexpredictor.models.ContextHolder;
 import bg.hack2_ruse.forexpredictor.models.Instrument;
 import bg.hack2_ruse.forexpredictor.models.InstrumentHolder;
 import bg.hack2_ruse.forexpredictor.models.Tools;
@@ -43,19 +45,21 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
             finish();
         }
 
+        PropertyUtul util = new PropertyUtul();
+        Context context = getApplicationContext();
+        ContextHolder.getInstance().setContext(context);
+        String requestURL = Constants.API + Constants.INSTRUMENTS_REQUEST;
+        task = new InstrumentServiceTask(context, this);
+        task.execute(requestURL);
+
+
     }
 
 
     @Override
     protected void onResume() {
-        PropertyUtul util = new PropertyUtul();
-        Context context = getApplicationContext();
      //   List<Tools> tools =  util.getInstruments(context);
      //   if (tools.size() == 0){
-            String requestURL = Constants.API + Constants.INSTRUMENTS_REQUEST;
-            task = new InstrumentServiceTask(context, this);
-            task.execute(requestURL);
-
     //    }else {
     //        feedAdapters(tools);
     //    }
@@ -63,8 +67,14 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
         mainLayout.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                Instrument instrument = InstrumentHolder.getInstance().getInstruments().get(position);
+
+                String instrumentName = instrument.getInstrument();
                 Intent intent = new Intent(MainActivity.this, ForexActivityJSON.class);
                 intent.putExtra("instument", position);
+                intent.putExtra("name", instrumentName);
                 startActivity(intent);
             }
         });

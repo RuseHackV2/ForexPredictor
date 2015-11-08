@@ -49,7 +49,7 @@ public class InstrumentServiceTask extends AsyncTask<String, Void, List<Tools>> 
         try {
             String text = run(url[0]);
             JSONObject instrumentData = new JSONObject(text);
-            JSONArray instrumetAskArr  = instrumentData.getJSONArray("instruments");
+            JSONArray instrumetAskArr = instrumentData.getJSONArray("instruments");
             Gson gson = new Gson();
             List<Tools> result = new ArrayList<>();
             for(int i = 0 ; i < instrumetAskArr.length(); i++)

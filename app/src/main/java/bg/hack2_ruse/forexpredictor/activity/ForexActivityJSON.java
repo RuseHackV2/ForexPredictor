@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -27,17 +28,27 @@ import bg.hack2_ruse.forexpredictor.models.InstrumentHolder;
 public class ForexActivityJSON extends AppCompatActivity {
 
     private ListView listView;
-    Instrument instrument;
+    private TextView instrumentTag;
+    private Instrument instrument;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forcast_layout);
-        Intent intent = getIntent();
+        intent = getIntent();
         int position = intent.getExtras().getInt("position");
         InstrumentHolder holder = InstrumentHolder.getInstance();
         instrument = holder.getInstruments().get(position);
         listView = (ListView) findViewById(R.id.itemHistoryList);
+        instrumentTag = (TextView) findViewById(R.id.instrument);
+        String name = intent.getStringExtra("name");
+        for (Instrument inst : InstrumentHolder.getInstance().getInstruments()){
+            if (name.equals(inst.getInstrument())){
+                instrument = inst;
+                break;
+            }
+        }
 
     }
 
@@ -45,6 +56,7 @@ public class ForexActivityJSON extends AppCompatActivity {
     {
         listView.setAdapter(new RecyclerForexAdapter(getApplicationContext(),instrument.getCandles()));
         listView.invalidate();
+        instrumentTag.setText(intent.getStringExtra("name"));
         super.onResume();
 
     }

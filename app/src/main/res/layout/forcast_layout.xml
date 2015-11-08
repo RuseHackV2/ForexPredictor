@@ -7,13 +7,13 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:weightSum="21">
+        android:weightSum="24">
 
         <TextView
             android:id="@+id/instrument"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
+            android:layout_weight="6"
             android:padding="5dp"
             android:text="Instr"
             android:textSize="22sp" />

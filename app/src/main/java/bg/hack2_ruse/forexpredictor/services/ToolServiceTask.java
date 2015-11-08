@@ -56,7 +56,7 @@ public class ToolServiceTask extends AsyncTask<Void, Void , Void> {
           // for(Tools tools: list){
          //      getData(tools);
          //  }
-        for(int i = 0; i < 10 ; i++)
+        for(int i = 0; i < 4 ; i++)
         {
             Tools tools = list.get(i);
             getData(tools);

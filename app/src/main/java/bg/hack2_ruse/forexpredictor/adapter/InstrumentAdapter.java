@@ -39,7 +39,7 @@ public class InstrumentAdapter extends ArrayAdapter<Instrument> {
 
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.main_element_layout, null, true);
-            holder = new ForexViewholder(convertView);
+            holder = new ForexViewholder(convertView, context);
 
             holder.instrument = (TextView) convertView.findViewById(R.id.instrumentName);
          //   holder.instrument.setTypeface(typeface);
@@ -53,6 +53,7 @@ public class InstrumentAdapter extends ArrayAdapter<Instrument> {
             convertView.setTag(holder);
         } else {
             holder = (ForexViewholder) convertView.getTag();
+            holder.context = context;
         }
 
         Instrument instrument = quotes.get(position);
@@ -61,7 +62,7 @@ public class InstrumentAdapter extends ArrayAdapter<Instrument> {
         holder.imageView.setImageDrawable(draw);
         holder.price.setText(instrument.getClose() + "");
         holder.date.setText(instrument.getDate().toString());
-
+        holder.startTimer(instrument);
         return convertView;
     }
 
